@@ -31,7 +31,7 @@ public class BundlerTest {
 
   @Before public void setup() {
     bundle = new Bundle();
-    bundler = new Bundler(bundle);
+    bundler = Bundler.with(bundle);
   }
 
   static BundleAssert assertThat(Bundle bundle) {

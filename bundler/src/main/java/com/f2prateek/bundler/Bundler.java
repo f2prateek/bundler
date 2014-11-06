@@ -24,20 +24,35 @@ import java.util.ArrayList;
 
 /**
  * Fluent API for {@link android.os.Bundle}
- * Usage: {@code Bundle bundle = new Bundler().put(....).put(....).get();}
+ * Usage: {@code Bundle delegate = new Bundler().put(....).put(....).get();}
  */
 public class Bundler {
 
-  private final Bundle bundle;
+  private final Bundle delegate;
+
+  /** Returns a bundler that delegates to a copy of the source bundle. */
+  public static Bundler copy(Bundle source) {
+    return create().putAll(source);
+  }
+
+  /** Returns a bundler that delegates to the source bundle. */
+  public static Bundler with(Bundle source) {
+    return new Bundler(source);
+  }
+
+  /** Creates a bundler instance. */
+  public static Bundler create() {
+    return new Bundler(new Bundle());
+  }
 
   /** Construct a new {@link Bundler} instance. */
   public Bundler() {
-    bundle = new Bundle();
+    this(new Bundle());
   }
 
-  /** Constructs a new Bundler instance that delegates to  {@code bundle}. */
-  public Bundler(Bundle bundle) {
-    this.bundle = bundle;
+  /** Constructs a new Bundler instance that delegates to {@code delegate}. */
+  private Bundler(Bundle delegate) {
+    this.delegate = delegate;
   }
 
   /**
@@ -46,9 +61,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a Boolean, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, boolean value) {
-    bundle.putBoolean(key, value);
+    delegate.putBoolean(key, value);
     return this;
   }
 
@@ -58,9 +74,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a boolean array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, boolean[] value) {
-    bundle.putBooleanArray(key, value);
+    delegate.putBooleanArray(key, value);
     return this;
   }
 
@@ -70,9 +87,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an int, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, int value) {
-    bundle.putInt(key, value);
+    delegate.putInt(key, value);
     return this;
   }
 
@@ -82,9 +100,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an int array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, int[] value) {
-    bundle.putIntArray(key, value);
+    delegate.putIntArray(key, value);
     return this;
   }
 
@@ -94,9 +113,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an ArrayList<Integer> object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler putIntegerArrayList(String key, ArrayList<Integer> value) {
-    bundle.putIntegerArrayList(key, value);
+    delegate.putIntegerArrayList(key, value);
     return this;
   }
 
@@ -106,9 +126,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a Bundle object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, Bundle value) {
-    bundle.putBundle(key, value);
+    delegate.putBundle(key, value);
     return this;
   }
 
@@ -118,9 +139,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a byte
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, byte value) {
-    bundle.putByte(key, value);
+    delegate.putByte(key, value);
     return this;
   }
 
@@ -130,9 +152,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a byte array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, byte[] value) {
-    bundle.putByteArray(key, value);
+    delegate.putByteArray(key, value);
     return this;
   }
 
@@ -142,9 +165,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a String, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, String value) {
-    bundle.putString(key, value);
+    delegate.putString(key, value);
     return this;
   }
 
@@ -154,9 +178,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a String array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, String[] value) {
-    bundle.putStringArray(key, value);
+    delegate.putStringArray(key, value);
     return this;
   }
 
@@ -166,9 +191,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an ArrayList<String> object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler putStringArrayList(String key, ArrayList<String> value) {
-    bundle.putStringArrayList(key, value);
+    delegate.putStringArrayList(key, value);
     return this;
   }
 
@@ -178,9 +204,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a long
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, long value) {
-    bundle.putLong(key, value);
+    delegate.putLong(key, value);
     return this;
   }
 
@@ -190,9 +217,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a long array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, long[] value) {
-    bundle.putLongArray(key, value);
+    delegate.putLongArray(key, value);
     return this;
   }
 
@@ -202,9 +230,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a float
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, float value) {
-    bundle.putFloat(key, value);
+    delegate.putFloat(key, value);
     return this;
   }
 
@@ -214,9 +243,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a float array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, float[] value) {
-    bundle.putFloatArray(key, value);
+    delegate.putFloatArray(key, value);
     return this;
   }
 
@@ -226,9 +256,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a char, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, char value) {
-    bundle.putChar(key, value);
+    delegate.putChar(key, value);
     return this;
   }
 
@@ -238,9 +269,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a char array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, char[] value) {
-    bundle.putCharArray(key, value);
+    delegate.putCharArray(key, value);
     return this;
   }
 
@@ -250,9 +282,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a CharSequence, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, CharSequence value) {
-    bundle.putCharSequence(key, value);
+    delegate.putCharSequence(key, value);
     return this;
   }
 
@@ -262,9 +295,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a CharSequence array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, CharSequence[] value) {
-    bundle.putCharSequenceArray(key, value);
+    delegate.putCharSequenceArray(key, value);
     return this;
   }
 
@@ -274,9 +308,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an ArrayList<CharSequence> object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler putCharSequenceArrayList(String key, ArrayList<CharSequence> value) {
-    bundle.putCharSequenceArrayList(key, value);
+    delegate.putCharSequenceArrayList(key, value);
     return this;
   }
 
@@ -286,9 +321,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a double
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, double value) {
-    bundle.putDouble(key, value);
+    delegate.putDouble(key, value);
     return this;
   }
 
@@ -298,9 +334,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a double array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, double[] value) {
-    bundle.putDoubleArray(key, value);
+    delegate.putDoubleArray(key, value);
     return this;
   }
 
@@ -310,9 +347,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a Parcelable object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, Parcelable value) {
-    bundle.putParcelable(key, value);
+    delegate.putParcelable(key, value);
     return this;
   }
 
@@ -323,9 +361,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an array of Parcelable objects, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, Parcelable[] value) {
-    bundle.putParcelableArray(key, value);
+    delegate.putParcelableArray(key, value);
     return this;
   }
 
@@ -336,9 +375,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value an ArrayList of Parcelable objects, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler putParcelableArrayList(String key, ArrayList<? extends Parcelable> value) {
-    bundle.putParcelableArrayList(key, value);
+    delegate.putParcelableArrayList(key, value);
     return this;
   }
 
@@ -349,9 +389,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a SparseArray of Parcelable objects, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler putSparseParcelableArray(String key, SparseArray<? extends Parcelable> value) {
-    bundle.putSparseParcelableArray(key, value);
+    delegate.putSparseParcelableArray(key, value);
     return this;
   }
 
@@ -361,9 +402,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a short
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, short value) {
-    bundle.putShort(key, value);
+    delegate.putShort(key, value);
     return this;
   }
 
@@ -373,9 +415,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a short array object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, short[] value) {
-    bundle.putShortArray(key, value);
+    delegate.putShortArray(key, value);
     return this;
   }
 
@@ -385,9 +428,10 @@ public class Bundler {
    *
    * @param key a String, or null
    * @param value a Serializable object, or null
+   * @return this bundler instance to chain method calls
    */
   public Bundler put(String key, Serializable value) {
-    bundle.putSerializable(key, value);
+    delegate.putSerializable(key, value);
     return this;
   }
 
@@ -395,31 +439,20 @@ public class Bundler {
    * Inserts all mappings from the given Bundle into the underlying Bundle.
    *
    * @param bundle a Bundle
+   * @return this bundler instance to chain method calls
    */
   public Bundler putAll(Bundle bundle) {
     bundle.putAll(bundle);
     return this;
   }
 
-  /**
-   * Get the underlying bundle.
-   */
+  /** Get a reference underlying delegate. */
   public Bundle get() {
-    return bundle;
+    return delegate;
   }
 
-  /**
-   * Copy the underlying bundle.
-   */
+  /** Get a copy of the underlying delegate. */
   public Bundle copy() {
-    return new Bundle(bundle);
-  }
-
-  /**
-   * Initialize a Bundler that is copied form the given bundle. The bundle that is passed will not
-   * be modified.
-   */
-  public static Bundler copyFrom(Bundle bundle) {
-    return new Bundler().putAll(bundle);
+    return new Bundle(delegate);
   }
 }
