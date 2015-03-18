@@ -1,16 +1,16 @@
 package com.f2prateek.bundler;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A Bundler that can create and set Bundle arguments to Fragments
+ *
+ * Usage: {@code Fragment fragment = FragmentBundler.make(FooFragment.class).put(....)..build();}
  *
  * @param <F> The fragment type you're bundling to.
  */
@@ -43,9 +43,9 @@ public class FragmentBundler<F extends Fragment> {
     try {
       return make(klass.newInstance());
     } catch (InstantiationException e) {
-      throw new IllegalArgumentException("Class must have a no-arguments constructor");
+      throw new IllegalArgumentException("Class must have a no-arguments constructor.");
     } catch (IllegalAccessException e) {
-      throw new IllegalArgumentException("Class must have a no-arguments constructor");
+      throw new IllegalArgumentException("Class must have a no-arguments constructor.");
     }
   }
 
@@ -381,7 +381,8 @@ public class FragmentBundler<F extends Fragment> {
    * @param value an ArrayList of Parcelable objects, or null
    * @return this bundler instance to chain method calls
    */
-  public FragmentBundler<F> putParcelableArrayList(String key, ArrayList<? extends Parcelable> value) {
+  public FragmentBundler<F> putParcelableArrayList(String key,
+      ArrayList<? extends Parcelable> value) {
     bundler.putParcelableArrayList(key, value);
     return this;
   }
@@ -395,7 +396,8 @@ public class FragmentBundler<F extends Fragment> {
    * @param value a SparseArray of Parcelable objects, or null
    * @return this bundler instance to chain method calls
    */
-  public FragmentBundler<F> putSparseParcelableArray(String key, SparseArray<? extends Parcelable> value) {
+  public FragmentBundler<F> putSparseParcelableArray(String key,
+      SparseArray<? extends Parcelable> value) {
     bundler.putSparseParcelableArray(key, value);
     return this;
   }
