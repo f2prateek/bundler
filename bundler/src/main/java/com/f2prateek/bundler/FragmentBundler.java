@@ -14,10 +14,10 @@ import java.util.ArrayList;
  *
  * @param <F> The fragment type you're bundling to.
  */
-@SuppressWarnings("unchecked")
-public class FragmentBundler<F extends Fragment> extends Bundler {
+public class FragmentBundler<F extends Fragment> {
 
   private final F fragment;
+  private final Bundler bundler = new Bundler();
 
   private FragmentBundler(F fragment) {
     this.fragment = fragment;
@@ -55,7 +55,7 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @return the fragment with this bundler's content set as arguments
    */
   public F build() {
-    fragment.setArguments(copy());
+    fragment.setArguments(bundler.copy());
     return fragment;
   }
 
@@ -67,9 +67,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a Boolean, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, boolean value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -80,9 +80,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a boolean array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, boolean[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -93,9 +93,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an int, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, int value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -106,9 +106,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an int array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, int[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -119,9 +119,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an ArrayList<Integer> object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putIntegerArrayList(String key, ArrayList<Integer> value) {
-    return (FragmentBundler<F>) super.putIntegerArrayList(key, value);
+    bundler.putIntegerArrayList(key, value);
+    return this;
   }
 
   /**
@@ -132,9 +132,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a Bundle object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, Bundle value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -145,9 +145,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a byte
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, byte value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -158,9 +158,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a byte array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, byte[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -171,9 +171,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a String, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, String value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -184,9 +184,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a String array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, String[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -197,9 +197,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an ArrayList<String> object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putStringArrayList(String key, ArrayList<String> value) {
-    return (FragmentBundler<F>) super.putStringArrayList(key, value);
+    bundler.putStringArrayList(key, value);
+    return this;
   }
 
   /**
@@ -210,9 +210,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a long
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, long value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -223,9 +223,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a long array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, long[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -236,9 +236,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a float
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, float value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -249,9 +249,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a float array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, float[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -262,9 +262,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a char, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, char value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -275,9 +275,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a char array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, char[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -288,9 +288,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a CharSequence, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, CharSequence value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -301,9 +301,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a CharSequence array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, CharSequence[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -314,9 +314,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an ArrayList<CharSequence> object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putCharSequenceArrayList(String key, ArrayList<CharSequence> value) {
-    return (FragmentBundler<F>) super.putCharSequenceArrayList(key, value);
+    bundler.putCharSequenceArrayList(key, value);
+    return this;
   }
 
   /**
@@ -327,9 +327,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a double
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, double value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -340,9 +340,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a double array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, double[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -353,9 +353,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a Parcelable object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, Parcelable value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -367,9 +367,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an array of Parcelable objects, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, Parcelable[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -381,9 +381,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value an ArrayList of Parcelable objects, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putParcelableArrayList(String key, ArrayList<? extends Parcelable> value) {
-    return (FragmentBundler<F>) super.putParcelableArrayList(key, value);
+    bundler.putParcelableArrayList(key, value);
+    return this;
   }
 
   /**
@@ -395,9 +395,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a SparseArray of Parcelable objects, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putSparseParcelableArray(String key, SparseArray<? extends Parcelable> value) {
-    return (FragmentBundler<F>) super.putSparseParcelableArray(key, value);
+    bundler.putSparseParcelableArray(key, value);
+    return this;
   }
 
   /**
@@ -408,9 +408,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a short
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, short value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -421,9 +421,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a short array object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, short[] value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -434,9 +434,9 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param value a Serializable object, or null
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> put(String key, Serializable value) {
-    return (FragmentBundler<F>) super.put(key, value);
+    bundler.put(key, value);
+    return this;
   }
 
   /**
@@ -445,8 +445,8 @@ public class FragmentBundler<F extends Fragment> extends Bundler {
    * @param bundle a Bundle
    * @return this bundler instance to chain method calls
    */
-  @Override
   public FragmentBundler<F> putAll(Bundle bundle) {
-    return (FragmentBundler<F>) super.putAll(bundle);
+    bundler.putAll(bundle);
+    return this;
   }
 }
