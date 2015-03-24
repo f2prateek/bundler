@@ -12,12 +12,12 @@ Download [the latest JAR][1] or grab via Maven:
 <dependency>
   <groupId>com.f2prateek.bundler</groupId>
   <artifactId>bundler</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'com.f2prateek.bundler:bundler:1.1.0'
+compile 'com.f2prateek.bundler:bundler:1.1.1'
 ```
 
 
