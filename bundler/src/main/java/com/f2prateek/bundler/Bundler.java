@@ -442,7 +442,7 @@ public class Bundler {
    * @return this bundler instance to chain method calls
    */
   public Bundler putAll(Bundle bundle) {
-    bundle.putAll(bundle);
+    delegate.putAll(bundle);
     return this;
   }
 

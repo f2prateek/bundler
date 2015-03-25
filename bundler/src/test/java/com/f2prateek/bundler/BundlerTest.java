@@ -43,4 +43,12 @@ public class BundlerTest {
     bundler.put("foo", "bar");
     assertThat(bundle).contains("foo", "bar");
   }
+
+  @Test
+  public void testPutAll() {
+    Bundle otherBunde = new Bundle();
+    otherBunde.putString("foo", "bar");
+    bundler.putAll(otherBunde);
+    assertThat(bundle).contains("foo", "bar");
+  }
 }
