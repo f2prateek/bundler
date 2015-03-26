@@ -18,7 +18,7 @@ public class FragmentBundlerTest {
 
   @Test public void testSetsArgumentsCorrectly() {
     Fragment fragment = mock(Fragment.class);
-    fragment = FragmentBundler.make(fragment).put("KEY_A", "a string").put("KEY_B", 2).build();
+    fragment = FragmentBundler.create(fragment).put("KEY_A", "a string").put("KEY_B", 2).build();
 
     Bundle bundle = new Bundle();
     bundle.putString("KEY_A", "a string");
@@ -34,7 +34,7 @@ public class FragmentBundlerTest {
 
   @Test public void testRequiresNoArgsConstructorForFragments() {
     try {
-      FragmentBundler.make(FooFragment.class);
+      FragmentBundler.create(FooFragment.class);
       fail();
     } catch (IllegalArgumentException e) {
       assertThat(e).hasMessage("Class must have a no-arguments constructor.");

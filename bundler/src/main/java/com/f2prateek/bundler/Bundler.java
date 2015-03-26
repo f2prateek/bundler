@@ -31,23 +31,18 @@ public class Bundler {
   private final Bundle delegate;
 
   /** Returns a bundler that delegates to a copy of the source bundle. */
-  public static Bundler copy(Bundle source) {
+  public static Bundler copyOf(Bundle source) {
     return create().putAll(source);
   }
 
   /** Returns a bundler that delegates to the source bundle. */
-  public static Bundler with(Bundle source) {
+  public static Bundler of(Bundle source) {
     return new Bundler(source);
   }
 
   /** Creates a bundler instance. */
   public static Bundler create() {
     return new Bundler(new Bundle());
-  }
-
-  /** Construct a new {@link Bundler} instance. */
-  public Bundler() {
-    this(new Bundle());
   }
 
   /** Constructs a new Bundler instance that delegates to {@code delegate}. */

@@ -20,6 +20,14 @@ public class BundleAssert extends AbstractAssert<BundleAssert, Bundle> {
     return this;
   }
 
+  public BundleAssert doesNotHaveKey(String key) {
+    isNotNull();
+    assertThat(actual.containsKey(key)) //
+        .overridingErrorMessage("Expected to not contain key <%s> but did.", key) //
+        .isFalse();
+    return this;
+  }
+
   public BundleAssert contains(String key, Object value) {
     isNotNull();
     assertThat(actual.get(key)) //

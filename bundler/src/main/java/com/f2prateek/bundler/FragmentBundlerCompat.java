@@ -11,14 +11,13 @@ import java.util.ArrayList;
  * A Bundler that can create and set Bundle arguments to Fragments
  *
  * Usage:
- * {@code Fragment fragment = FragmentBundlerCompat.make(FooFragment.class).put(....)..build();}
+ * {@code Fragment fragment = FragmentBundlerCompat.create(FooFragment.class).put(....)..build();}
  *
  * @param <F> The fragment type you're bundling to.
  */
 public class FragmentBundlerCompat<F extends Fragment> {
-
   private final F fragment;
-  private final Bundler bundler = new Bundler();
+  private final Bundler bundler = Bundler.create();
 
   private FragmentBundlerCompat(F fragment) {
     this.fragment = fragment;
@@ -30,7 +29,7 @@ public class FragmentBundlerCompat<F extends Fragment> {
    * @param fragment the fragment instance
    * @return this bundler instance to chain method calls
    */
-  public static <F extends Fragment> FragmentBundlerCompat<F> make(F fragment) {
+  public static <F extends Fragment> FragmentBundlerCompat<F> create(F fragment) {
     return new FragmentBundlerCompat<F>(fragment);
   }
 
@@ -40,9 +39,9 @@ public class FragmentBundlerCompat<F extends Fragment> {
    * @param klass the fragment class
    * @return this bundler instance to chain method calls
    */
-  public static <F extends Fragment> FragmentBundlerCompat<F> make(Class<F> klass) {
+  public static <F extends Fragment> FragmentBundlerCompat<F> create(Class<F> klass) {
     try {
-      return make(klass.newInstance());
+      return create(klass.newInstance());
     } catch (InstantiationException e) {
       throw new IllegalArgumentException("Class must have a no-arguments constructor.");
     } catch (IllegalAccessException e) {
@@ -61,7 +60,8 @@ public class FragmentBundlerCompat<F extends Fragment> {
   }
 
   /**
-   * Inserts a Boolean value into the mapping of the underlying Bundle, replacing any existing value
+   * Inserts a Boolean value into the mapping of the underlying Bundle, replacing any existing
+   * value
    * for the given key.  Either key or value may be null.
    *
    * @param key a String, or null
@@ -74,7 +74,8 @@ public class FragmentBundlerCompat<F extends Fragment> {
   }
 
   /**
-   * Inserts a boolean array value into the mapping of the underlying Bundle, replacing any existing
+   * Inserts a boolean array value into the mapping of the underlying Bundle, replacing any
+   * existing
    * value for the given key.  Either key or value may be null.
    *
    * @param key a String, or null

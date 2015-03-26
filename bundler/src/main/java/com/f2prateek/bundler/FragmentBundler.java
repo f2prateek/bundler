@@ -10,14 +10,13 @@ import java.util.ArrayList;
 /**
  * A Bundler that can create and set Bundle arguments to Fragments
  *
- * Usage: {@code Fragment fragment = FragmentBundler.make(FooFragment.class).put(....)..build();}
+ * Usage: {@code Fragment fragment = FragmentBundler.create(FooFragment.class).put(....)..build();}
  *
  * @param <F> The fragment type you're bundling to.
  */
 public class FragmentBundler<F extends Fragment> {
-
   private final F fragment;
-  private final Bundler bundler = new Bundler();
+  private final Bundler bundler = Bundler.create();
 
   private FragmentBundler(F fragment) {
     this.fragment = fragment;
@@ -29,7 +28,7 @@ public class FragmentBundler<F extends Fragment> {
    * @param fragment the fragment instance
    * @return this bundler instance to chain method calls
    */
-  public static <F extends Fragment> FragmentBundler<F> make(F fragment) {
+  public static <F extends Fragment> FragmentBundler<F> create(F fragment) {
     return new FragmentBundler<F>(fragment);
   }
 
@@ -39,9 +38,9 @@ public class FragmentBundler<F extends Fragment> {
    * @param klass the fragment class
    * @return this bundler instance to chain method calls
    */
-  public static <F extends Fragment> FragmentBundler<F> make(Class<F> klass) {
+  public static <F extends Fragment> FragmentBundler<F> create(Class<F> klass) {
     try {
-      return make(klass.newInstance());
+      return create(klass.newInstance());
     } catch (InstantiationException e) {
       throw new IllegalArgumentException("Class must have a no-arguments constructor.");
     } catch (IllegalAccessException e) {
